@@ -1,6 +1,6 @@
 import { loginUser, fetchUserProfile } from "@/lib/api";
 import { User } from "@/types";
-import { useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
   user: User | null;
