@@ -25,3 +25,19 @@ export const fetchUserProfile = async (token: string): Promise<User> => {
   if (!res.ok) throw new Error("No autorizado");
   return res.json();
 };
+
+export const registerUser = async (
+  email: string,
+  password: string
+): Promise<void> => {
+  const res = await fetch(`${API_URL}/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.message || "Error al registrarse");
+  }
+};
