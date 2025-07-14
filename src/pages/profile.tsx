@@ -51,10 +51,11 @@ export default function ProfilePage() {
               <p className="text-sm text-gray-600">
                 Location: {event.location}
               </p>
-              <Link href={`/events/${event._id}`}>
-                <a className="text-blue-500 text-sm hover:underline">
-                  View Details
-                </a>
+              <Link
+                href={`/events/${event._id}`}
+                className="text-blue-500 text-sm hover:underline"
+              >
+                View Details
               </Link>
             </li>
           ))}

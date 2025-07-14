@@ -59,7 +59,7 @@ export const reserveEvent = async (
   eventId: string,
   token: string
 ): Promise<void> => {
-  const res = await fetch(`${API_URL}/reservations`, {
+  const res = await fetch(`${API_URL}/reservations/${eventId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -97,5 +97,26 @@ export const getMyReservations = async (token: string): Promise<Event[]> => {
   });
 
   if (!res.ok) throw new Error("Failed to fetch reservations");
+  return res.json();
+};
+
+export const createEvent = async (
+  data: Omit<Event, "_id" | "createdAt" | "availableTickets">,
+  token: string
+): Promise<Event> => {
+  const res = await fetch(`${API_URL}/events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message || "Failed to create event");
+  }
+
   return res.json();
 };

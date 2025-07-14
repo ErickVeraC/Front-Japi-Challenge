@@ -1,5 +1,6 @@
 import { AuthProvider } from "@/context/AuthContext";
 import "@/styles/globals.css";
+import "react-datepicker/dist/react-datepicker.css";
 import type { AppProps } from "next/app";
 
 import MainLayout from "@/components/MainLayout";

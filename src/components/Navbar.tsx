@@ -19,6 +19,15 @@ export default function Navbar() {
           Looking for
         </Link>
 
+        {user && (
+          <Link
+            href="/create"
+            className="text-sm text-gray-700 hover:text-green-600"
+          >
+            Create Event
+          </Link>
+        )}
+
         {!user && (
           <Link href="/login" className="text-gray-700 hover:text-blue-600">
             Log In
