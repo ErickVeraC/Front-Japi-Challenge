@@ -32,12 +32,14 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-600">
+    <section className="min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-300 shadow-md rounded-2xl px-8 py-6 w-full max-w-md"
+        className="bg-white/50 shadow-md rounded-2xl px-8 py-6 w-full max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Log In</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">
+          Log In
+        </h2>
 
         {error && (
           <div className="mb-4 text-red-600 bg-red-100 p-2 rounded">
@@ -70,14 +72,17 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+          className="w-full bg-purple-600 text-white py-2 px-4 rounded font-bold hover:bg-purple-700 transition"
         >
           {loading ? "Entering..." : "Enter"}
         </button>
 
-        <p className="mt-4 text-sm text-center">
+        <p className="mt-4 text-sm text-center text-black">
           Don't have an account?{" "}
-          <a href="/register" className="text-blue-600 hover:underline">
+          <a
+            href="/register"
+            className="text-purple-600 hover:underline font-bold"
+          >
             Register here
           </a>
         </p>

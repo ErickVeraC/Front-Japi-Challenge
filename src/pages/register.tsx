@@ -33,12 +33,14 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <section className="min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 py-6 w-full max-w-md"
+        className="bg-white/50 shadow-md rounded-2xl px-8 py-6 w-full max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">
+          Register
+        </h2>
 
         {error && (
           <div className="mb-4 text-red-600 bg-red-100 p-2 rounded">
@@ -47,7 +49,7 @@ export default function RegisterPage() {
         )}
 
         <label className="block mb-2 text-sm font-bold text-gray-700">
-          Email
+          Email address
         </label>
         <input
           type="email"
@@ -82,11 +84,21 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+          className="w-full bg-purple-600 text-white py-2 px-4 rounded font-bold hover:bg-purple-700 transition"
         >
           {loading ? "Registering..." : "Register"}
         </button>
+
+        <p className="mt-4 text-sm text-center text-black">
+          Already have an account?{" "}
+          <a
+            href="/login"
+            className="text-purple-600 hover:underline font-bold"
+          >
+            Log in here
+          </a>
+        </p>
       </form>
-    </div>
+    </section>
   );
 }

@@ -7,10 +7,12 @@ import MainLayout from "@/components/MainLayout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AuthProvider>
-      <MainLayout>
-        <Component {...pageProps} />;
-      </MainLayout>
-    </AuthProvider>
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-yellow-200">
+      <AuthProvider>
+        <MainLayout>
+          <Component {...pageProps} />;
+        </MainLayout>
+      </AuthProvider>
+    </div>
   );
 }
