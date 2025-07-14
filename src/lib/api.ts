@@ -88,3 +88,14 @@ export const cancelReservation = async (
     throw new Error(data.message || "Failed to cancel reservation");
   }
 };
+
+export const getMyReservations = async (token: string): Promise<Event[]> => {
+  const res = await fetch(`${API_URL}/reservations/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch reservations");
+  return res.json();
+};
