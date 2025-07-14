@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { registerUser, loginUser } from "@/lib/api";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function RegisterPage() {
 
     try {
       await registerUser(email, password);
+      await loginUser(email, password);
       router.push("/login");
     } catch (err) {
       setError((err as Error).message || "Unknown error");

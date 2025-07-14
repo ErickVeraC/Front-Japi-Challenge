@@ -11,24 +11,24 @@ export default function Navbar() {
         href="/"
         className="text-xl font-bold text-blue-600 hover:text-blue-800"
       >
-        EventosApp
+        JapiTest App
       </Link>
 
       <div className="flex gap-4 items-center text-sm">
         <Link href="/" className="text-gray-700 hover:text-blue-600">
-          Explorar
+          Looking for
         </Link>
 
         {!user && (
-          <Link href="/login" legacyBehavior>
-            <a className="text-gray-700 hover:text-blue-600">Iniciar sesión</a>
+          <Link href="/login" className="text-gray-700 hover:text-blue-600">
+            Log In
           </Link>
         )}
 
         {user && (
           <>
             <Link href="/create" className="text-gray-700 hover:text-blue-600">
-              Crear Evento
+              Create Event
             </Link>
             <Link href="/profile" className="text-gray-700 hover:text-blue-600">
               Mi Perfil
@@ -37,7 +37,7 @@ export default function Navbar() {
               onClick={logout}
               className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
             >
-              Cerrar sesión
+              Log Out
             </button>
           </>
         )}

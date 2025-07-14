@@ -1,5 +1,6 @@
 import { LoginResponse } from "@/types";
 import { API_URL } from "./config";
+import { Event } from "@/types";
 
 export const loginUser = async (
   email: string,
@@ -40,4 +41,10 @@ export const registerUser = async (
     const errorData = await res.json();
     throw new Error(errorData.message || "Error al registrarse");
   }
+};
+
+export const getEvents = async (): Promise<Event[]> => {
+  const res = await fetch(`${API_URL}/events`);
+  if (!res.ok) throw new Error("Failed to fetch events");
+  return res.json();
 };

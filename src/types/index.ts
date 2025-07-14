@@ -10,12 +10,13 @@ export interface LoginResponse {
 export interface Event {
   _id: string;
   title: string;
+  description: string;
   date: string;
   location: string;
-  description: string;
   capacity: number;
   availableTickets: number;
   organizer: string;
+  createdAt: string;
 }
 
 export interface Reservation {
