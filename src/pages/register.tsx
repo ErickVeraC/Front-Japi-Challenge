@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { registerUser, loginUser } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -24,7 +26,8 @@ export default function RegisterPage() {
     try {
       await registerUser(email, password);
       await loginUser(email, password);
-      router.push("/login");
+      await login(email, password);
+      router.push("/");
     } catch (err) {
       setError((err as Error).message || "Unknown error");
     } finally {
@@ -56,7 +59,7 @@ export default function RegisterPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded"
+          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded text-black"
         />
 
         <label className="block mb-2 text-sm font-bold text-gray-700">
@@ -67,7 +70,7 @@ export default function RegisterPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded"
+          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded text-black"
         />
 
         <label className="block mb-2 text-sm font-bold text-gray-700">
@@ -78,7 +81,7 @@ export default function RegisterPage() {
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
           required
-          className="w-full px-3 py-2 mb-6 border border-gray-300 rounded"
+          className="w-full px-3 py-2 mb-6 border border-gray-300 rounded text-black"
         />
 
         <button
