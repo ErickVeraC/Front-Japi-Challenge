@@ -48,3 +48,43 @@ export const getEvents = async (): Promise<Event[]> => {
   if (!res.ok) throw new Error("Failed to fetch events");
   return res.json();
 };
+
+export const getEventById = async (id: string): Promise<Event> => {
+  const res = await fetch(`${API_URL}/events/${id}`);
+  if (!res.ok) throw new Error("Failed to fetch event");
+  return res.json();
+};
+
+export const reserveEvent = async (
+  eventId: string,
+  token: string
+): Promise<void> => {
+  const res = await fetch(`${API_URL}/reservations`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ eventId }),
+  });
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message || "Failed to reserve");
+  }
+};
+
+export const cancelReservation = async (
+  eventId: string,
+  token: string
+): Promise<void> => {
+  const res = await fetch(`${API_URL}/reservations/${eventId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message || "Failed to cancel reservation");
+  }
+};
