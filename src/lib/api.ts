@@ -1,4 +1,4 @@
-import { LoginResponse } from "@/types";
+import { LoginResponse, User } from "@/types";
 import { API_URL } from "./config";
 import { Event } from "@/types";
 

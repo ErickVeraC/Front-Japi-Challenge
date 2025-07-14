@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { registerUser, loginUser } from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -94,12 +95,12 @@ export default function RegisterPage() {
 
         <p className="mt-4 text-sm text-center text-black">
           Already have an account?{" "}
-          <a
+          <Link
             href="/login"
             className="text-purple-600 hover:underline font-bold"
           >
             Log in here
-          </a>
+          </Link>
         </p>
       </form>
     </section>

@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -78,13 +79,13 @@ export default function LoginPage() {
         </button>
 
         <p className="mt-4 text-sm text-center text-black">
-          Don't have an account?{" "}
-          <a
+          Dont have an account?{" "}
+          <Link
             href="/register"
             className="text-purple-600 hover:underline font-bold"
           >
             Register here
-          </a>
+          </Link>
         </p>
       </form>
     </section>

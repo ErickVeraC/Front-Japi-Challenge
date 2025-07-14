@@ -11,7 +11,7 @@ const schema = z.object({
   title: z.string().min(3, "Title is required"),
   description: z.string().min(10, "Description is too short"),
   location: z.string().min(3, "Location is required"),
-  date: z.date({ required_error: "Date is required" }),
+  date: z.date().refine((val) => !!val, { message: "Date is required" }),
   capacity: z.number().min(1, "Capacity must be at least 1"),
 });
 
@@ -40,7 +40,14 @@ export default function CreateEventPage() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const event = await createEvent(data, token!);
+      const event = await createEvent(
+        {
+          ...data,
+          date: data.date.toISOString(),
+          organizer: user!.userId,
+        },
+        token!
+      );
       router.push(`/events/${event._id}`);
     } catch (err) {
       setError((err as Error).message);

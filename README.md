@@ -1,40 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🎟️ Event Management System — Full Stack App
 
-## Getting Started
+Una plataforma para organizar eventos y realizar reservas de asistencia, desarrollada como parte de una prueba técnica.  
+A platform to create and manage events and user reservations, built as part of a technical challenge.
 
-First, run the development server:
+---
+
+## 🚀 Tecnologías / Tech Stack
+
+**Backend**:
+
+- NestJS (TypeScript)
+- MongoDB + Mongoose
+- JWT Authentication
+- Class-validator
+
+**Frontend**:
+
+- Next.js (TypeScript)
+- React + Context API
+- Tailwind CSS
+- ESLint + React Hook Form
+
+---
+
+## 📦 Instalación Local / Local Setup
+
+### 1. Clona ambos repositorios (o carpetas separadas si es monorepo)
+
+```bash
+git clone git@github.com:ErickVeraC/Back-Japi-Challenge.git
+git clone git@github.com:ErickVeraC/Front-Japi-Challenge.git
+```
+
+---
+
+### 2. Backend
+
+```bash
+cd backend
+npm install
+```
+
+#### Variables de entorno (.env)
+
+```env
+PORT=3000
+```
+
+#### Ejecutar localmente
+
+```bash
+npm run start:dev
+```
+
+Swagger UI disponible en `http://localhost:3000/api` (si habilitado).
+
+---
+
+### 3. Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+#### Variables de entorno (.env.local)
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+#### Ejecutar localmente
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## ✨ Funcionalidades / Features
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- 🔐 Registro e inicio de sesión con JWT
+- 👤 Página de perfil con reservas activas
+- 📅 Crear, editar y listar eventos
+- 🎫 Reservar y cancelar asistencia
+- 📉 Boletos disponibles decrecen automáticamente
+- 🚫 No permite reservas duplicadas ni cuando ya no hay boletos
+- 🛡️ Rutas protegidas por autenticación
+- 📱 Interfaz responsiva con Tailwind
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔑 Endpoints Clave / Key Endpoints (Backend)
 
-## Learn More
+| Método | Ruta                   | Descripción              |
+| ------ | ---------------------- | ------------------------ |
+| POST   | /auth/register         | Registro de usuario      |
+| POST   | /auth/login            | Inicio de sesión         |
+| GET    | /events                | Listar todos los eventos |
+| GET    | /events/:id            | Obtener evento por ID    |
+| POST   | /events                | Crear evento (auth)      |
+| PUT    | /events/:id            | Editar evento (auth)     |
+| DELETE | /events/:id            | Eliminar evento (auth)   |
+| POST   | /reservations/:eventId | Reservar evento (auth)   |
+| DELETE | /reservations/:eventId | Cancelar reserva (auth)  |
+| GET    | /reservations/me       | Ver mis reservas (auth)  |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🌐 Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend (Next.js)**: [Vercel Link](https://your-vercel-url.vercel.app)
+- **Backend (NestJS)**:  
+  Debido a limitaciones de recursos en Render (versión gratuita), el backend no está en producción. Sin embargo, puede ejecutarse localmente sin problemas siguiendo las instrucciones anteriores.
 
-## Deploy on Vercel
+> The backend was not deployed due to resource limits on Render free tier. It runs smoothly locally.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 🧠 Decisiones Técnicas / Technical Decisions
+
+- Se utilizó Context API por ser suficiente para la escala del proyecto, evitando Redux u otras dependencias más complejas.
+- La validación se maneja en ambos lados (React Hook Form + class-validator).
+- El backend maneja errores 401 con redirección automática al frontend.
+- La arquitectura sigue principios de separación de responsabilidades y uso de DTOs, guards, y servicios.
+- No se usaron transacciones de Mongo por simplicidad, pero se contempla `findOneAndUpdate` atómico como mejora futura.
+
+---
+
+## 📌 Consideraciones Finales
+
+- Si desea testear la app completa:
+  1. Levante el backend localmente en puerto `3000`
+  2. Use el frontend en Vercel con `NEXT_PUBLIC_API_URL=http://localhost:3000`
+  3. O modifique la variable en `.env.local` del frontend
+
+---
+
+## 🤝 Autor / Author
+
+## **Erick The Coder**
+
+Full Stack JavaScrip Developer
